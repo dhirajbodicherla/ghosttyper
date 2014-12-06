@@ -1,47 +1,20 @@
+@fontSize: 24px;
+html{
+    background-image: url(images/bg.jpg);
+    background-repeat:no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 body {
     -webkit-font-smoothing: antialiased;
     font-family: Garuda;
 }
-.ghost-typer,
-.human-typer {
-    border: 1px solid red;
-    box-shadow: 3px 2px 2px silver;
-    padding: 10px;
-    margin: 10px 0px;
-    position: relative;
-    min-height: 100px;
-}
-.human-typer {
-    position: relative;
-    .start-game{
-        background-color: rgba(255, 255, 255, 0.3);
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        text-align: center;
-        .btn{
-            background-color: lightgreen;
-            border: transparent;
-            height: 30px;
-            font-size: 20px;
-        }
-    }
-    textarea {
-        border: transparent;
-        resize: none;
-        min-height: 100px;
-        width: 100%;
-        font-size: 18px;
-        &:focus{
-            outline: none;
-        }
-    }
-}
 .header {
+    font-family: 'Architects Daughter', cursive;
     .title {
-        font-size: 45px;
+        font-size: 64px;
         text-align: center;
         text-shadow: -450px 2px 2px silver;
         
@@ -55,9 +28,71 @@ body {
         }
     }
 }
-.text{
-    border: none;
-    font-size: 18px;
+.ghost-typer,
+.human-typer {
+    box-shadow: 0px 0px 15px silver;
+    -webkit-box-shadow: 0px 0px 15px silver;
+    padding: 10px;
+    margin: 15px 30px;
+    border-radius: 5px;
+    position: relative;
+    min-height: 180px;
+    font-size: @fontSize;
+    color: black;
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+}
+.human-typer {
+    position: relative;
+    .button-wrapper{
+        position: absolute;
+        left: 37%;
+        top: 20%;
+    }
+    .start-game{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        text-align: center;
+        .btn{
+            background-color: rgba(255,255,255,0.4);
+            border: transparent;
+            height: 67px;
+            font-size: 32px;
+            box-shadow: 0px 0px 10px silver;
+            -webkit-box-shadow: 0px 0px 10px silver;
+            opacity: 0.8;
+            /* top: 40%; */
+            position: relative;
+            /* left: 40%; */
+            padding: 15px;
+            &:hover{
+                cursor: pointer;
+                opacity: 1;
+            }
+            &:focus{
+                outline: none;
+            }
+            &:active{
+                opacity: 0.8;
+            }
+        }
+    }
+    textarea {
+        border: transparent;
+        background: transparent;
+        resize: none;
+        min-height: 100px;
+        width: 100%;
+        font-size: @fontSize;
+        font-family: Garuda;
+        -webkit-font-smoothing: antialiased;
+        color: black;
+        &:focus{
+            outline: none;
+        }
+    }
 }
 .ghosttyper-cursor{
     opacity: 1;

@@ -12,14 +12,18 @@ function start(){
 
     GT = $('.ghost-typer').ghostTyper({
         inputString: "",
-        typeSpeed: 20,
+        typeSpeed: 500,
         autoStart: false,
         success: function(data){
             console.log('done');
         }
     });
 
-    $('.start-game').click(function(){
-        
+    $('.btn').click(function(e){
+        e.preventDefault();
+
+        GT.start();
+        $(this).parents('.human-typer').find('.start-game').hide();
+        $(this).parents('.human-typer').find('textarea').focus();
     })
 }
