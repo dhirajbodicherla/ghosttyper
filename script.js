@@ -1,16 +1,25 @@
 $(document).ready(function(){
-    less.pageLoadFinished.then(
-        function() {
-            $('body').show();
-        }
-    )
+    less = {
+        logLevel: 0
+    }
+    start();
+    
+});
+function start(){
+
+    $('body').css('visibility', 'visible');
     $('.title').addClass('animate');
+
     GT = $('.ghost-typer').ghostTyper({
         inputString: "",
-        difficulty: 2,
-        human: $('#human-typer textarea'),
+        typeSpeed: 20,
+        autoStart: false,
         success: function(data){
             console.log('done');
         }
     });
-});
+
+    $('.start-game').click(function(){
+        
+    })
+}

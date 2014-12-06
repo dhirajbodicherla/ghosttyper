@@ -1,8 +1,9 @@
-body{
+body {
     -webkit-font-smoothing: antialiased;
     font-family: Garuda;
 }
-.ghost-typer, #human-typer{
+.ghost-typer,
+.human-typer {
     border: 1px solid red;
     box-shadow: 3px 2px 2px silver;
     padding: 10px;
@@ -10,17 +11,35 @@ body{
     position: relative;
     min-height: 100px;
 }
-#human-typer textarea{
-    border: transparent;
-    resize: none;
-    min-height: 100px;
-    width: 100%;
-    font-size: 18px;
-    &:focus{
-        outline: none;
+.human-typer {
+    position: relative;
+    .start-game{
+        background-color: rgba(255, 255, 255, 0.3);
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        text-align: center;
+        .btn{
+            background-color: lightgreen;
+            border: transparent;
+            height: 30px;
+            font-size: 20px;
+        }
+    }
+    textarea {
+        border: transparent;
+        resize: none;
+        min-height: 100px;
+        width: 100%;
+        font-size: 18px;
+        &:focus{
+            outline: none;
+        }
     }
 }
-header {
+.header {
     .title {
         font-size: 45px;
         text-align: center;
@@ -36,7 +55,7 @@ header {
         }
     }
 }
-span.text{
+.text{
     border: none;
     font-size: 18px;
 }

@@ -2,12 +2,12 @@
 <head>
 <title>GhostTyper</title>
 <style type="text/css">
-    body{ display: none; }
+    body{ visibility: hidden; }
 </style>
 <link rel="stylesheet/less" type="text/css" href="styles.less" />
 </head>
 <body>
-    <header>
+    <header class="header">
         <div class="title">
             Ghost Typer
         </div>
@@ -15,7 +15,13 @@
     <div class="ghost-typer">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     </div>
-    <div id="human-typer">
+    <!-- <div class="ghost-typer">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </div> -->
+    <div class="human-typer">
+        <div class="start-game">
+            <input type="button" value="Start Game" class="btn" />
+        </div>
         <textarea></textarea>
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
