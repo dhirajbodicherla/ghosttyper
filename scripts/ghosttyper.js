@@ -13,6 +13,7 @@
                 showCursor: true,
                 backspaceCount: 0,
                 autoStart: true,
+                startDelay: 0,
                 success : function() {},
                 start: function() {}
             };
@@ -36,6 +37,7 @@
                 isTyping = true;
             },
             _setup: function(){
+                var self = this;
                 this.el.append(this.typer);
                 if(this.options.showCursor === true){
                     this.cursor = $('<span>|</span>').css({
@@ -45,7 +47,9 @@
                     }).addClass('ghosttyper-cursor');
                     this.el.append(this.cursor);
                 }
-                this._type();
+                setTimeout(function(){
+                    self._type();
+                }, this.options.startDelay);
             },
             _type: function(){
                 var self = this;
