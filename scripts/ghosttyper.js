@@ -1,10 +1,10 @@
 ;(function($){
     $.fn.ghostTyper = function(options) {
         // support multiple elements
-        if (this.length > 1){
-            this.each(function() { $(this).ghostTyper(options); });
-            return this;
-        }
+        // if (this.length > 1){
+        //     this.each(function() { $(this).ghostTyper(options); });
+        //     return this;
+        // }
 
         var GhostTyper = function(el, options){
             this.el = $(el);
@@ -14,6 +14,7 @@
                 backspaceCount: 0,
                 autoStart: true,
                 startDelay: 0,
+                recordInput: null,
                 success : function() {},
                 start: function() {}
             };
@@ -24,7 +25,10 @@
             this.typerWord = '';
             this.arrayPos = 0;
             this.letterCount = this.inputString.length;
+            this.recordInput = this.options.recordInput;
             this.typerTimer = '';
+            this.recordTypeCounter = 0;
+            this.recordBackspaceCounter = 0;
             if(this.options.autoStart) this._setup();
         };
 
@@ -35,6 +39,7 @@
                 if(isTyping) return;
                 this._setup();
                 isTyping = true;
+                this._record();
             },
             _setup: function(){
                 var self = this;
@@ -75,6 +80,18 @@
                     self.typer.html(self.typerWord);
                     self.arrayPos--;
                 }, this.options.typeSpeed);
+            },
+            _record: function(){
+                var self = this;
+                this.recordInput.on('keypress', function(e){
+                    var inp = String.fromCharCode(e.keyCode);
+                    if (/^[a-zA-Z0-9._\b]+$/.test(inp)){
+                        self.recordTypeCounter++;
+                    }
+                    if(e.keypress == 8){
+                        self.recordBackspaceCounter++;
+                    }
+                });
             },
             _pause: function(){
                 if(!isTyping) return;

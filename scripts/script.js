@@ -15,6 +15,7 @@ function start(){
         typeSpeed: 100,
         startDelay: 3000,
         autoStart: false,
+        recordInput: $('.btn'),
         success: function(data){
             console.log('done');
         }
