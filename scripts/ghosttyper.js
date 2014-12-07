@@ -65,7 +65,16 @@
                 }, this.options.typeSpeed);
             },
             _backspace: function(){
-                
+                var self = this;
+                this.typerTimer = setInterval(function(){
+                    if(self.arrayPos == -1) {
+                        clearInterval(self.typerTimer);
+                        return;
+                    }
+                    self.typerWord = self.inputString.substring(0, self.arrayPos-1);
+                    self.typer.html(self.typerWord);
+                    self.arrayPos--;
+                }, this.options.typeSpeed);
             },
             _pause: function(){
                 if(!isTyping) return;
@@ -130,6 +139,9 @@
         this.isTyping = function(){
             return instance._isTyping();
         };
+        this.backspace = function(){
+            return instance._backspace();
+        }
 
         // return (function() {
         //     instance = new GhostTyper(self, options);

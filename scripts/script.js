@@ -12,7 +12,7 @@ function start(){
 
     GT = $('.ghost-typer').ghostTyper({
         inputString: "",
-        typeSpeed: 500,
+        typeSpeed: 100,
         startDelay: 3000,
         autoStart: false,
         success: function(data){
