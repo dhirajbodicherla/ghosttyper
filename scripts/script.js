@@ -15,7 +15,7 @@ function start(){
         typeSpeed: 100,
         startDelay: 3000,
         autoStart: false,
-        recordInput: $('.btn'),
+        recordInput: $('.human-typer textarea'),
         success: function(data){
             console.log('done');
         }

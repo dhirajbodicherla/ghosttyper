@@ -83,14 +83,15 @@
             },
             _record: function(){
                 var self = this;
-                this.recordInput.on('keypress', function(e){
+                this.recordInput.keyup(function(e){
                     var inp = String.fromCharCode(e.keyCode);
-                    if (/^[a-zA-Z0-9._\b]+$/.test(inp)){
+                    if (/^[a-zA-Z0-9.,? ]+$/.test(inp)){
                         self.recordTypeCounter++;
                     }
-                    if(e.keypress == 8){
+                    if(e.keyCode == 8 || e.keyCode == 46){
                         self.recordBackspaceCounter++;
                     }
+                    console.log(self.recordTypeCounter, self.recordBackspaceCounter);
                 });
             },
             _pause: function(){
