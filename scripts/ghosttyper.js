@@ -15,7 +15,7 @@
                 autoStart: true,
                 startDelay: 0,
                 recordInput: null,
-                success : function() {},
+                complete : function() {},
                 start: function() {}
             };
             this.options = $.extend({}, this.defaultOptions, options);
@@ -61,7 +61,7 @@
                 this.typerTimer = setInterval(function(){
                     if(self.arrayPos == self.letterCount) {
                         clearInterval(self.typerTimer);
-                        self.options.success();
+                        self.options.complete(score);
                         return;
                     }
                     self.typerWord = self.inputString.substring(0, self.arrayPos);
@@ -91,7 +91,7 @@
                     if(e.keyCode == 8 || e.keyCode == 46){
                         self.recordBackspaceCounter++;
                     }
-                    console.log(self.recordTypeCounter, self.recordBackspaceCounter);
+                    // console.log(self.recordTypeCounter, self.recordBackspaceCounter);
                 });
             },
             _pause: function(){
@@ -118,6 +118,7 @@
         var instance;
         var isTyping = false;
         var self = this;
+        var score = {};
         
         var setup = function(){
             instance = new GhostTyper(self, options);

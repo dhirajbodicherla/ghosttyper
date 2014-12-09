@@ -3,7 +3,10 @@ $(document).ready(function(){
         logLevel: 0
     }
     start();
-    
+    var level = [{
+        f: 10,
+        b: 2
+    }];
 });
 function start(){
 
@@ -12,13 +15,14 @@ function start(){
 
     GT = $('.ghost-typer').ghostTyper({
         inputString: "",
-        typeSpeed: 100,
+        typeSpeed: 10,
         startDelay: 3000,
         autoStart: false,
-        recordInput: $('.human-typer textarea'),
-        success: function(data){
-            console.log('done');
-        }
+        recordInput: $('.human-typer .textarea'),
+        complete: function(data){
+            console.log('done', data);
+        },
+
     });
 
     $('.btn').click(function(e){
@@ -26,6 +30,6 @@ function start(){
 
         GT.start();
         $(this).parents('.human-typer').find('.start-game').hide();
-        $(this).parents('.human-typer').find('textarea').focus();
+        $(this).parents('.human-typer').find('.textarea').focus();
     })
 }

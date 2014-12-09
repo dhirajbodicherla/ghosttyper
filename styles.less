@@ -10,6 +10,7 @@ html{
 body {
     -webkit-font-smoothing: antialiased;
     font-family: Garuda;
+    -webkit-user-select: none;
 }
 .header {
     font-family: 'Architects Daughter', cursive;
@@ -41,6 +42,7 @@ body {
     color: black;
     border: 1px dashed rgba(255, 255, 255, 0.3);
     height: 180px;
+    overflow: scroll;
 }
 .human-typer {
     position: relative;
@@ -80,7 +82,7 @@ body {
             }
         }
     }
-    textarea {
+    .textarea {
         border: transparent;
         background: transparent;
         resize: none;
@@ -90,6 +92,7 @@ body {
         font-family: Garuda;
         -webkit-font-smoothing: antialiased;
         color: black;
+        -webkit-user-select: none;
         &:focus{
             outline: none;
         }
