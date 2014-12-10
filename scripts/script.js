@@ -15,21 +15,30 @@ function start(){
 
     GT = $('.ghost-typer').ghostTyper({
         inputString: "",
-        typeSpeed: 10,
+        typeSpeed: 100,
         startDelay: 3000,
         autoStart: false,
         recordInput: $('.human-typer .textarea'),
         complete: function(data){
-            console.log('done', data);
+            // console.log('done', data);
+            $('.buttons').show();
+            $('.next-level-btn').show();
         },
 
     });
 
-    $('.btn').click(function(e){
+    $('.start-game-btn').click(function(e){
         e.preventDefault();
 
         GT.start();
-        $(this).parents('.human-typer').find('.start-game').hide();
-        $(this).parents('.human-typer').find('.textarea').focus();
-    })
+        $('.buttons').hide();
+        $('.start-game-btn').hide();
+        $('.textarea').focus();
+    });
+
+    $('.next-level-btn').click(function(e){
+        e.preventDefault();
+
+        GT.nextLevel();
+    });
 }

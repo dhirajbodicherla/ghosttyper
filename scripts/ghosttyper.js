@@ -24,9 +24,10 @@
             this.el.html('');
             this.typerWord = '';
             this.arrayPos = 0;
-            this.letterCount = this.inputString.length;
+            this.letterCount = this.inputString.length; /* do this better once _checkStorage is done */
             this.recordInput = this.options.recordInput;
             this.typerTimer = '';
+            this.backSpaceTyperTimer = ''
             this.recordTypeCounter = 0;
             this.recordBackspaceCounter = 0;
             if(this.options.autoStart) this._setup();
@@ -43,7 +44,11 @@
             },
             _setup: function(){
                 var self = this;
+                
                 this.el.append(this.typer);
+                this._checkStorage();
+                this.letterCount = score[currentLevel]['f'];
+                this.backspaceCount = this._getBackspacePositions(score[currentLevel]['b']);
                 if(this.options.showCursor === true){
                     this.cursor = $('<span>|</span>').css({
                         'font-size': '30px',
@@ -64,6 +69,13 @@
                         self.options.complete(score);
                         return;
                     }
+                    if(self.arrayPos == self.backspaceCount[0]){
+                        self.backspaceCount.splice(0, 1);
+                        self._backspace();
+                        clearInterval(self.typerTimer);
+                        return;
+                    }
+
                     self.typerWord = self.inputString.substring(0, self.arrayPos);
                     self.typer.html(self.typerWord);
                     self.arrayPos++;
@@ -71,15 +83,12 @@
             },
             _backspace: function(){
                 var self = this;
-                this.typerTimer = setInterval(function(){
-                    if(self.arrayPos == -1) {
-                        clearInterval(self.typerTimer);
-                        return;
-                    }
-                    self.typerWord = self.inputString.substring(0, self.arrayPos-1);
-                    self.typer.html(self.typerWord);
-                    self.arrayPos--;
-                }, this.options.typeSpeed);
+                self.typerWord = self.inputString.substring(0, self.arrayPos-2);
+                self.typer.html(self.typerWord);
+                self.arrayPos--;
+                this.backSpaceTyperTimer = setTimeout(function(){
+                    self._type();
+                }, 2000);
             },
             _record: function(){
                 var self = this;
@@ -93,6 +102,19 @@
                     }
                     // console.log(self.recordTypeCounter, self.recordBackspaceCounter);
                 });
+            },
+            _nextLevel: function(){
+
+            },
+            _checkStorage: function(){
+
+            },
+            _getBackspacePositions: function(b){
+                var arr = [];
+                for(var i=0; i<b;i++){
+                    arr.push(Math.floor(Math.random() * this.letterCount));
+                }
+                return arr.sort(function(a, b){ return a-b; });;
             },
             _pause: function(){
                 if(!isTyping) return;
@@ -118,7 +140,13 @@
         var instance;
         var isTyping = false;
         var self = this;
-        var score = {};
+        var currentLevel = 0;
+        var score = {
+            '0' : {
+                'f' : 200,
+                'b' : 4
+            }
+        };
         
         var setup = function(){
             instance = new GhostTyper(self, options);
@@ -160,6 +188,9 @@
         };
         this.backspace = function(){
             return instance._backspace();
+        }
+        this.nextLevel = function(){
+            return instance._nextLevel();
         }
 
         // return (function() {
