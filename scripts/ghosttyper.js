@@ -42,6 +42,7 @@
                 isTyping = true;
                 this._record();
             },
+
             _setup: function(){
                 var self = this;
                 
@@ -49,6 +50,7 @@
                 this._checkStorage();
                 this.letterCount = score[currentLevel]['f'];
                 this.backspaceCount = this._getBackspacePositions(score[currentLevel]['b']);
+                this.options.typeSpeed = score[currentLevel]['s'];
                 if(this.options.showCursor === true){
                     this.cursor = $('<span>|</span>').css({
                         'font-size': '30px',
@@ -61,6 +63,7 @@
                     self._type();
                 }, this.options.startDelay);
             },
+
             _type: function(){
                 var self = this;
                 this.typerTimer = setInterval(function(){
@@ -81,6 +84,7 @@
                     self.arrayPos++;
                 }, this.options.typeSpeed);
             },
+
             _backspace: function(){
                 var self = this;
                 self.typerWord = self.inputString.substring(0, self.arrayPos-2);
@@ -90,6 +94,7 @@
                     self._type();
                 }, 2000);
             },
+
             _record: function(){
                 var self = this;
                 this.recordInput.keyup(function(e){
@@ -103,12 +108,15 @@
                     // console.log(self.recordTypeCounter, self.recordBackspaceCounter);
                 });
             },
+
             _nextLevel: function(){
 
             },
+
             _checkStorage: function(){
 
             },
+
             _getBackspacePositions: function(b){
                 var arr = [];
                 for(var i=0; i<b;i++){
@@ -116,24 +124,29 @@
                 }
                 return arr.sort(function(a, b){ return a-b; });;
             },
+
             _pause: function(){
                 if(!isTyping) return;
                 clearInterval(this.typerTimer);
                 isTyping = false;
             },
+
             _resume: function(){
                 if(isTyping) return;
                 this._type();
                 isTyping = true;
             },
+
             _setTypeSpeed: function(typeSpeed){
                 this.options.typeSpeed = typeSpeed;
                 this._pause();
                 this._resume();
             },
+
             _getTypeSpeed: function(){
                 return this.options.typeSpeed;
             }
+            
         };
 
         // private variables
@@ -142,9 +155,10 @@
         var self = this;
         var currentLevel = 0;
         var score = {
-            '0' : {
-                'f' : 200,
-                'b' : 4
+            '0': {
+                'f': 200,
+                'b': 40,
+                's': 800
             }
         };
         
