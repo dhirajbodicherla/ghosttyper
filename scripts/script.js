@@ -16,13 +16,14 @@ function start(){
     GT = $('.ghost-typer').ghostTyper({
         inputString: "",
         typeSpeed: 100,
-        startDelay: 3000,
+        startDelay: 1000,
         autoStart: false,
         recordInput: $('.human-typer .textarea'),
         complete: function(data){
             // console.log('done', data);
             $('.buttons').show();
             $('.next-level-btn').show();
+            $('.textarea').attr('contenteditable', 'false');
         },
 
     });
@@ -33,6 +34,7 @@ function start(){
         GT.start();
         $('.buttons').hide();
         $('.start-game-btn').hide();
+        $('.textarea').attr('contenteditable', 'true');
         $('.textarea').focus();
     });
 
