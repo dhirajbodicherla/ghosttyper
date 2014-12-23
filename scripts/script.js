@@ -20,12 +20,10 @@ function start(){
         autoStart: false,
         recordInput: $('.human-typer .textarea'),
         complete: function(data){
-            // console.log('done', data);
             $('.buttons').show();
             $('.next-level-btn').show();
             $('.textarea').attr('contenteditable', 'false');
         },
-
     });
 
     $('.start-game-btn').click(function(e){
@@ -41,6 +39,10 @@ function start(){
     $('.next-level-btn').click(function(e){
         e.preventDefault();
 
+        $('.textarea').attr('contenteditable', 'true');
+        $('.textarea').focus();
+        $('.buttons').hide();
         GT.nextLevel();
     });
 }
+window.onbeforeunload = function(){ return; };

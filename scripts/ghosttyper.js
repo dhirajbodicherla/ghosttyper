@@ -43,6 +43,7 @@
                 this.el.html('');
                 this._setup();
                 isTyping = true;
+                isRecording = true;
                 this._record();
             },
 
@@ -78,6 +79,7 @@
                         clearInterval(self.typerTimer);
                         clearInterval(self.globalTimer);
                         isTyping = false;
+                        isRecording = false;
                         self.options.complete(score);
                         return;
                     }
@@ -107,6 +109,7 @@
             _record: function(){
                 var self = this;
                 this.recordInput.keyup(function(e){
+                    if(!isRecording) return;
                     var inp = String.fromCharCode(e.keyCode);
                     if (/^[a-zA-Z0-9.,? ]+$/.test(inp)){
                         self.recordTypeCounter++;
@@ -118,7 +121,7 @@
             },
 
             _nextLevel: function(){
-                var speed = Math.floor((this.recordTypeCounter + this.recordBackspaceCounter ) / this.recordTypeSpeed);
+                var speed = Math.floor((this.recordTypeCounter + this.recordBackspaceCounter ) / this.recordTypeSpeed) * 1000;
                 score[currentLevel] = {
                     'f': this.recordTypeCounter,
                     'b': this.recordBackspaceCounter,
@@ -170,6 +173,10 @@
                 this.arrayPos = 0;
                 this.typer.html('');
                 this.recordInput.html('');
+            },
+
+            _calculateAccuracy: function(){
+                
             }
             
         };
@@ -179,10 +186,11 @@
         var isTyping = false;
         var self = this;
         var currentLevel = 1;
+        var isRecording = false;
         var score = {
             '0': {
-                'f': 200,
-                'b': 20,
+                'f': 50,
+                'b': 5,
                 's': 100
             }
         };
