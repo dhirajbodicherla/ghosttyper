@@ -189,8 +189,8 @@
         var isRecording = false;
         var score = {
             '0': {
-                'f': 50,
-                'b': 5,
+                'f': 100,
+                'b': 10,
                 's': 100
             }
         };
