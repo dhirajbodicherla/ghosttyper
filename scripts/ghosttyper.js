@@ -65,15 +65,20 @@
                     this.el.append(this.cursor);
                 }
                 setTimeout(function(){
+                    self._startTimer();
                     self._type();
                 }, this.options.startDelay);
             },
 
-            _type: function(){
+            _startTimer: function(){
                 var self = this;
                 this.globalTimer = setInterval(function(){
                     self.recordTypeSpeed++;
                 }, 1000);
+            },
+
+            _type: function(){
+                var self = this;
                 this.typerTimer = setInterval(function(){
                     if(self.arrayPos == self.letterCount) {
                         clearInterval(self.typerTimer);
@@ -108,6 +113,9 @@
 
             _record: function(){
                 var self = this;
+                // check if event has already been attached
+                if( $._data(this.recordInput.get(0), 'events') ) return;
+                
                 this.recordInput.keyup(function(e){
                     if(!isRecording) return;
                     var inp = String.fromCharCode(e.keyCode);
@@ -121,7 +129,9 @@
             },
 
             _nextLevel: function(){
-                var speed = Math.floor((this.recordTypeCounter + this.recordBackspaceCounter ) / this.recordTypeSpeed) * 1000;
+                var speed = (this.recordTypeCounter + this.recordBackspaceCounter ) / this.recordTypeSpeed;
+                console.log(this.recordTypeCounter, this.recordBackspaceCounter, this.recordTypeSpeed, speed);
+                speed = speed * 100;
                 score[currentLevel] = {
                     'f': this.recordTypeCounter,
                     'b': this.recordBackspaceCounter,
@@ -170,6 +180,7 @@
                 this.recordTypeCounter = 0;
                 this.recordBackspaceCounter = 0;
                 this.typerWord = '';
+                this.recordTypeSpeed = 0;
                 this.arrayPos = 0;
                 this.typer.html('');
                 this.recordInput.html('');
