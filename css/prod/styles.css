@@ -1,0 +1,146 @@
+html {
+  background-image: url(../../images/bg.jpg);
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: Garuda;
+  -webkit-user-select: none;
+}
+.header {
+  font-family: 'Architects Daughter', cursive;
+}
+.header .title {
+  font-size: 64px;
+  text-align: center;
+  text-shadow: -450px 2px 2px silver;
+}
+.header .title.animate {
+  text-shadow: -50px 2px 2px silver;
+  -webkit-transition: text-shadow 2s ease-in-out;
+  -moz-transition: text-shadow 2s ease-in-out;
+  -o-transition: text-shadow 2s ease-in-out;
+  -ms-transition: text-shadow 2s ease-in-out;
+  transition: text-shadow 2s ease-in-out;
+}
+.ghost-typer,
+.human-typer {
+  box-shadow: 0px 0px 15px silver;
+  -webkit-box-shadow: 0px 0px 15px silver;
+  padding: 10px;
+  margin: 15px 30px;
+  border-radius: 5px;
+  position: relative;
+  min-height: 100px;
+  font-size: 24px;
+  color: black;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  height: 180px;
+  overflow: scroll;
+}
+.human-typer {
+  position: relative;
+}
+.human-typer .button-wrapper {
+  background: green;
+  position: absolute;
+  left: 37%;
+  top: 20%;
+}
+.human-typer .buttons {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  text-align: center;
+}
+.human-typer .buttons .next-level-btn {
+  display: none;
+}
+.human-typer .buttons .next-level-btn,
+.human-typer .buttons .start-game-btn {
+  background-color: rgba(255, 255, 255, 0.4);
+  border: transparent;
+  height: 67px;
+  font-size: 32px;
+  box-shadow: 0px 0px 10px silver;
+  -webkit-box-shadow: 0px 0px 10px silver;
+  opacity: 0.8;
+  /* top: 40%; */
+  position: relative;
+  /* left: 40%; */
+  padding: 15px;
+}
+.human-typer .buttons .next-level-btn:hover,
+.human-typer .buttons .start-game-btn:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+.human-typer .buttons .next-level-btn:focus,
+.human-typer .buttons .start-game-btn:focus {
+  outline: none;
+}
+.human-typer .buttons .next-level-btn:active,
+.human-typer .buttons .start-game-btn:active {
+  opacity: 0.8;
+}
+.human-typer .textarea {
+  border: transparent;
+  background: transparent;
+  resize: none;
+  min-height: 100px;
+  width: 100%;
+  font-size: 24px;
+  font-family: Garuda;
+  -webkit-font-smoothing: antialiased;
+  color: black;
+  -webkit-user-select: none;
+}
+.human-typer .textarea:focus {
+  outline: none;
+}
+.ghosttyper-cursor {
+  opacity: 1;
+  -webkit-animation: blink 0.7s infinite;
+  -moz-animation: blink 0.7s infinite;
+  animation: blink 0.7s infinite;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
