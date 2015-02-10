@@ -1,4 +1,5 @@
 ;(function($){
+    "use strict";
     $.fn.ghostTyper = function(options) {
         // support multiple elements
         // if (this.length > 1){
@@ -20,15 +21,15 @@
             };
             this.options = $.extend({}, this.defaultOptions, options);
             this.inputString = ($.trim(this.options.inputString)) ? this.options.inputString : this.el.html();
-            this.typer = $('<span></span>').attr('id', 'typer').addClass('text');
-            this.el.html('');
-            this.typerWord = '';
+            this.typer = $("<span></span>").attr("id", "typer").addClass("text");
+            this.el.html("");
+            this.typerWord = "";
             this.arrayPos = 0;
             this.letterCount = this.inputString.length; /* do this better once _checkStorage is done */
             this.recordInput = this.options.recordInput;
             this.typeSpeed = this.options.typeSpeed;
-            this.typerTimer = '';
-            this.backSpaceTyperTimer = '';
+            this.typerTimer = "";
+            this.backSpaceTyperTimer = "";
             this.recordTypeSpeed = 0;
             this.recordTypeCounter = 0;
             this.recordBackspaceCounter = 0;
@@ -40,7 +41,7 @@
 
             _start: function(){
                 if(isTyping) return;
-                this.el.html('');
+                this.el.html("");
                 this._setup();
                 isTyping = true;
                 isRecording = true;
@@ -49,19 +50,17 @@
 
             _setup: function(){
                 var self = this;
-                
                 this.el.append(this.typer);
                 this._checkStorage();
-                this.letterCount = score[currentLevel-1]['f'];
+                this.letterCount = score[currentLevel-1].f;
                 this.backspaceCount = this._getBackspacePositions(score[currentLevel-1]['b']);
-                this.typeSpeed = score[currentLevel-1]['s'];
-                
+                this.typeSpeed = score[currentLevel-1].s;
                 if(this.options.showCursor === true){
-                    this.cursor = $('<span>|</span>').css({
-                        'font-size': '30px',
-                        'line-height': '0.8',
-                        'position': 'absolute'
-                    }).addClass('ghosttyper-cursor');
+                    this.cursor = $("<span>|</span>").css({
+                        "font-size": "30px",
+                        "line-height": "0.8",
+                        "position": "absolute"
+                    }).addClass("ghosttyper-cursor");
                     this.el.append(this.cursor);
                 }
                 setTimeout(function(){
@@ -80,7 +79,7 @@
             _type: function(){
                 var self = this;
                 this.typerTimer = setInterval(function(){
-                    if(self.arrayPos == self.letterCount) {
+                    if(self.arrayPos === self.letterCount) {
                         clearInterval(self.typerTimer);
                         clearInterval(self.globalTimer);
                         isTyping = false;
@@ -88,7 +87,7 @@
                         self.options.complete(score);
                         return;
                     }
-                    if(self.arrayPos == self.backspaceCount[0]){
+                    if(self.arrayPos === self.backspaceCount[0]){
                         self.backspaceCount.splice(0, 1);
                         self._backspace();
                         clearInterval(self.typerTimer);
@@ -115,14 +114,13 @@
                 var self = this;
                 // check if event has already been attached
                 if( $._data(this.recordInput.get(0), 'events') ) return;
-                
                 this.recordInput.keyup(function(e){
                     if(!isRecording) return;
                     var inp = String.fromCharCode(e.keyCode);
                     if (/^[a-zA-Z0-9.,? ]+$/.test(inp)){
                         self.recordTypeCounter++;
                     }
-                    if(e.keyCode == 8 || e.keyCode == 46){
+                    if(e.keyCode === 8 || e.keyCode === 46){
                         self.recordBackspaceCounter++;
                     }
                 });
@@ -133,9 +131,9 @@
                 console.log(this.recordTypeCounter, this.recordBackspaceCounter, this.recordTypeSpeed, speed);
                 speed = speed * 100;
                 score[currentLevel] = {
-                    'f': this.recordTypeCounter,
-                    'b': this.recordBackspaceCounter,
-                    's': speed
+                    "f": this.recordTypeCounter,
+                    "b": this.recordBackspaceCounter,
+                    "s": speed
                 };
                 currentLevel++;
                 this._reset();
@@ -179,17 +177,14 @@
             _reset: function(){
                 this.recordTypeCounter = 0;
                 this.recordBackspaceCounter = 0;
-                this.typerWord = '';
+                this.typerWord = "";
                 this.recordTypeSpeed = 0;
                 this.arrayPos = 0;
-                this.typer.html('');
-                this.recordInput.html('');
+                this.typer.html("");
+                this.recordInput.html("");
             },
-
             _calculateAccuracy: function(){
-                
             }
-            
         };
 
         // private variables
@@ -199,29 +194,24 @@
         var currentLevel = 1;
         var isRecording = false;
         var score = {
-            '0': {
-                'f': 100,
-                'b': 10,
-                's': 100
+            "0": {
+                "f": 100,
+                "b": 10,
+                "s": 100
             }
         };
-        
         var setup = function(){
             instance = new GhostTyper(self, options);
             return self;
         };
-
-        /* 
+        /*
         // private methods
         var foo = function() {
-            
         }
         */
-
-        /*  
+        /*
          * Public methods (API)
          */
-
         this.start = function(){
             instance._start();
             return this;
@@ -250,7 +240,6 @@
         this.nextLevel = function(){
             return instance._nextLevel();
         };
-
         // return (function() {
         //     instance = new GhostTyper(self, options);
         //     return self;
@@ -262,12 +251,10 @@
             instance = new GhostTyper(self, options);
             return self;
         });
-        
         // if (this.length > 1){
         //     this.each(function() { $(this).ghostTyper(options) });
         //     return this;
         // }
-
         // return this.each(function() {
         //     // instance = new GhostTyper(self, options);
         //     instance = new GhostTyper(this, options);
@@ -277,6 +264,5 @@
         //     // return instance.apply(self);
         //     // return setup();
         // });
-
     };
 })(jQuery);
